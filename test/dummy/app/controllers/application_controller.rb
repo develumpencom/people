@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   allow_browser versions: :modern
 
   def current_user
-    User.find_by(id: session[:user_id])
+    Rails.env.development? ?
+      User.first :
+      User.find_by(id: session[:user_id])
   end
 end
