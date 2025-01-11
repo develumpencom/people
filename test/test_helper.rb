@@ -13,3 +13,9 @@ if ActiveSupport::TestCase.respond_to?(:fixture_paths=)
   ActiveSupport::TestCase.file_fixture_path = File.expand_path("fixtures", __dir__) + "/files"
   ActiveSupport::TestCase.fixtures :all
 end
+
+module SignInHelper
+  def sign_in_as(user)
+    post session_url, params: { user_id: user.id }
+  end
+end
